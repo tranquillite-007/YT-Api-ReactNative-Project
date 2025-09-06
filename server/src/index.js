@@ -18,10 +18,28 @@ app.use(
 );
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.json({
+    message: "YouTube Video API Server is running!",
+    version: "1.0.0",
+    endpoints: {
+      health: "/health",
+      allVideos: "/api/videos",
+      addVideo: "POST /api/videos",
+      deleteVideo: "DELETE /api/videos/:id",
+    },
+    note: "Use /api/videos to get enriched YouTube video data",
+  });
+});
+
 app.use("/api/videos", videoRoutes);
 
 app.get("/health", (req, res) => {
-  res.json({ status: "OK", message: "Server is running" });
+  res.json({
+    status: "OK",
+    message: "Server is running",
+    timestamp: new Date().toISOString(),
+  });
 });
 
 app.use((err, req, res, next) => {
@@ -29,8 +47,11 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-app.use((req, res) => {
-  res.status(404).json({ error: "Route not found" });
+app.use("*", (req, res) => {
+  res.status(404).json({
+    error: "Route not found",
+    availableRoutes: ["/", "/health", "/api/videos"],
+  });
 });
 
 app.listen(PORT, () => {
