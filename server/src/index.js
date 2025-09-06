@@ -47,7 +47,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-app.use("*", (req, res) => {
+app.use((req, res) => {
   res.status(404).json({
     error: "Route not found",
     availableRoutes: ["/", "/health", "/api/videos"],
