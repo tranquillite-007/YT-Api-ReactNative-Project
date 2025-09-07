@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "client",
-    "slug": "client",
+    "name": "video-app",
+    "slug": "video-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -20,10 +20,17 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.parul_123.videoapp"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": ["expo-build-properties"],
+    "extra": {
+      "eas": {
+        "projectId": "9af35975-73bc-4562-b896-a9d7f578d54d"
+      }
     }
   }
 }
